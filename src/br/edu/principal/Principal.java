@@ -1,16 +1,20 @@
 package br.edu.principal;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		int capacidade = 2;
-		String [] nomes = new String[capacidade]; //  tipo [] nome new tipo limite
-        String celulares []  = new String[capacidade];
-        String emails []  = new String[capacidade];
-        int cont = 0; //quantidade de contatos
+		//int capacidade = 2; NÃO USAMOS MAIS
+		
+		List<String> nomes = new ArrayList<>();
+		List<String> celulares = new ArrayList<>();
+		List<String> emails = new ArrayList<>();
+
+        int cont = 0;
         Scanner sc = new Scanner(System.in); 
         int opcao;
         
@@ -41,30 +45,30 @@ public class Principal {
     	        	System.out.println("\n--- ADICIONAR CONTATO ---");
 
     	            System.out.print("Nome: ");
-    	            nomes[cont] = sc.nextLine();
+    	            nomes.add(sc.nextLine());
 
     	            System.out.print("Celular: ");
-    	            celulares[cont] = sc.nextLine();
+    	            celulares.add(sc.nextLine());
 
     	            System.out.print("E-mail: ");
-    	            emails[cont] = sc.nextLine();
+    	            emails.add(sc.nextLine());
     	            
     	            cont++;
 
     	            System.out.println("Contato salvo com sucesso!");
 
     	        }
-    	        case 2 ->{
+    	        case 2 -> {
     	            System.out.println("Listar contato");
-    	            if(cont == 0) {
+    	            if(nomes.size() == 0) {
     	            	System.out.println("Nenhum contato encontrado!");
     	            }
-    	            else {//valor do i| enquanto| i +=1|
-    	            	for(int i = 0; i < cont; i++) {
+    	            else {
+    	            	for(int i = 0; i < nomes.size(); i++) {
     	                    System.out.println("\nContato " + (i + 1));
-    	                    System.out.println("Nome: " + nomes[i]);
-    	                    System.out.println("Celular: " + celulares[i]);
-    	                    System.out.println("E-mail: " + emails[i]);
+    	                    System.out.println("Nome: " + nomes.get(i));
+    	                    System.out.println("Celular: " + celulares.get(i));
+    	                    System.out.println("E-mail: " + emails.get(i));
     	                }
     	            }
     	        }
@@ -73,13 +77,14 @@ public class Principal {
     	            System.out.print("Digite o nome que deseja procurar: ");
     	            String nomeBusca = sc.nextLine();
     	            boolean encontrado = false;
-    	            	    
-    	            for(int i = 0; i < cont; i++) {
-    	                if(nomes[i].equalsIgnoreCase(nomeBusca)) {
+    	            
+    	            // o get() ele pega o elemento daquele indice e o size() ele mostra o tamanho, como o len() em python
+    	            for(int i = 0; i < nomes.size(); i++) {
+    	                if(nomes.get(i).equalsIgnoreCase(nomeBusca)) { 
     	                    System.out.println("Contato encontrado!");
-    	                    System.out.println("Nome: " + nomes[i]);
-    	                    System.out.println("Celular: " + celulares[i]);
-    	                    System.out.println("E-mail: " + emails[i]);
+    	                    System.out.println("Nome: " + nomes.get(i));
+    	                    System.out.println("Celular: " + celulares.get(i));
+    	                    System.out.println("E-mail: " + emails.get(i));
 
     	                    encontrado = true;
     	                }
@@ -98,23 +103,20 @@ public class Principal {
     	                String nomeExcluir = sc.nextLine();
     	                int indiceExcluir = -1;
     	                for(int i = 0; i < cont; i++) {
-    	                    if(nomes[i].equalsIgnoreCase(nomeExcluir)) {
+    	                    if(nomes.get(i).equalsIgnoreCase(nomeExcluir)) {
     	                        indiceExcluir = i;
     	                    }
     	                }
     	                if(indiceExcluir == -1) {
     	                    System.out.println("Contato não encontrado.");
     	                }
-    	                else { // isso para sempre o ultimo caractere ficar vazio
-    	                    for(int i = indiceExcluir; i < cont - 1; i++) {
-    	                        nomes[i] = nomes[i + 1];
-    	                        celulares[i] = celulares[i + 1];
-    	                        emails[i] = emails[i + 1];
-    	                    }
-    	                    nomes[cont - 1] = null;
-    	                    celulares[cont - 1] = null;
-    	                    emails[cont - 1] = null;
+    	                else {
+    	                	nomes.remove(indiceExcluir); // o remove() ele remove o elemento do indice que eu escolher
+    	                    celulares.remove(indiceExcluir);
+    	                    emails.remove(indiceExcluir);
+
     	                    cont--;
+
     	                    System.out.println("Contato excluído com sucesso!");
     	                }
     	            }
