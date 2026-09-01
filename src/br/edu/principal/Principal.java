@@ -22,7 +22,7 @@ public class Principal {
         
 		System.out.println("==========================");
         System.out.println("     AGENDA DE CONTATOS    ");
-        System.out.println("          v0.1.0           ");
+        System.out.println("          v0.2.0           ");
         System.out.println("==========================");
 
         System.out.println("Bem-vindo!");
