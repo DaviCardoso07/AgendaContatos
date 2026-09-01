@@ -6,16 +6,19 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		String nome = "";
-        String celular = "";
-        String email = "";
+		int capacidade = 2;
+		String [] nomes = new String[capacidade]; //  tipo [] nome new tipo limite
+        String celulares []  = new String[capacidade];
+        String emails []  = new String[capacidade];
+        int cont = 0; //quantidade de contatos
         Scanner sc = new Scanner(System.in); 
         int opcao;
+        
         boolean continuar = true;
         
 		System.out.println("==========================");
         System.out.println("     AGENDA DE CONTATOS    ");
-        System.out.println("          v0.0.0           ");
+        System.out.println("          v0.1.0           ");
         System.out.println("==========================");
 
         System.out.println("Bem-vindo!");
@@ -38,61 +41,83 @@ public class Principal {
     	        	System.out.println("\n--- ADICIONAR CONTATO ---");
 
     	            System.out.print("Nome: ");
-    	            nome = sc.nextLine();
+    	            nomes[cont] = sc.nextLine();
 
     	            System.out.print("Celular: ");
-    	            celular = sc.nextLine();
+    	            celulares[cont] = sc.nextLine();
 
     	            System.out.print("E-mail: ");
-    	            email = sc.nextLine();
+    	            emails[cont] = sc.nextLine();
+    	            
+    	            cont++;
 
     	            System.out.println("Contato salvo com sucesso!");
 
     	        }
     	        case 2 ->{
     	            System.out.println("Listar contato");
-    	            if(nome.isEmpty()) { // esse método verifica se o nome está vazio
+    	            if(cont == 0) {
     	            	System.out.println("Nenhum contato encontrado!");
     	            }
-    	            else {
-    	            	System.out.println("\n--- CONTATO CADASTRADO ---");
-    	                System.out.println("Nome: " + nome);
-    	                System.out.println("Celular: " + celular);
-    	                System.out.println("E-mail: " + email);
-
+    	            else {//valor do i| enquanto| i +=1|
+    	            	for(int i = 0; i < cont; i++) {
+    	                    System.out.println("\nContato " + (i + 1));
+    	                    System.out.println("Nome: " + nomes[i]);
+    	                    System.out.println("Celular: " + celulares[i]);
+    	                    System.out.println("E-mail: " + emails[i]);
+    	                }
     	            }
     	        }
     	        case 3 -> {
-    	        	System.out.println("Procurar contato");
-    	        	System.out.print("Digite o nome que deseja procurar: ");
-                    String nomeBusca = sc.nextLine();
-                    
-                    if(nome.equalsIgnoreCase(nomeBusca)) { //ele usa o método (verificar se o nome é igual e ignorando a caixa alta(letra maiúscula)
-                    	 System.out.println("Contato encontrado!");
-                         System.out.println("Nome: " + nome);
-                         System.out.println("Celular: " + celular);
-                         System.out.println("E-mail: " + email);
-                    }
-                    else{
-                    	System.out.println("Contato não encontrado.");
-                    }
+    	        	System.out.println("\n--- PROCURAR CONTATO ---");
+    	            System.out.print("Digite o nome que deseja procurar: ");
+    	            String nomeBusca = sc.nextLine();
+    	            boolean encontrado = false;
+    	            	    
+    	            for(int i = 0; i < cont; i++) {
+    	                if(nomes[i].equalsIgnoreCase(nomeBusca)) {
+    	                    System.out.println("Contato encontrado!");
+    	                    System.out.println("Nome: " + nomes[i]);
+    	                    System.out.println("Celular: " + celulares[i]);
+    	                    System.out.println("E-mail: " + emails[i]);
 
+    	                    encontrado = true;
+    	                }
+    	            }
+    	            if(!encontrado) {
+    	                System.out.println("Contato não encontrado.");
+    	            }
     	        }
     	        case 4 -> {
     	        	System.out.println("\n--- EXCLUIR CONTATO ---");
-
-                    if (nome.isEmpty()) {
-
-                        System.out.println("Nenhum contato cadastrado.");
-
-                    } else {
-
-                        nome = "";
-                        celular = "";
-                        email = "";
-
-                        System.out.println("Contato excluído com sucesso!");
-                    }
+    	            if(cont == 0) {
+    	                System.out.println("Nenhum contato cadastrado.");
+    	            }
+    	            else {
+    	                System.out.print("Digite o nome do contato que deseja excluir: ");
+    	                String nomeExcluir = sc.nextLine();
+    	                int indiceExcluir = -1;
+    	                for(int i = 0; i < cont; i++) {
+    	                    if(nomes[i].equalsIgnoreCase(nomeExcluir)) {
+    	                        indiceExcluir = i;
+    	                    }
+    	                }
+    	                if(indiceExcluir == -1) {
+    	                    System.out.println("Contato não encontrado.");
+    	                }
+    	                else { // isso para sempre o ultimo caractere ficar vazio
+    	                    for(int i = indiceExcluir; i < cont - 1; i++) {
+    	                        nomes[i] = nomes[i + 1];
+    	                        celulares[i] = celulares[i + 1];
+    	                        emails[i] = emails[i + 1];
+    	                    }
+    	                    nomes[cont - 1] = null;
+    	                    celulares[cont - 1] = null;
+    	                    emails[cont - 1] = null;
+    	                    cont--;
+    	                    System.out.println("Contato excluído com sucesso!");
+    	                }
+    	            }
     	        }
     	        case 5 -> {
     	            System.out.println("Saindo...");
