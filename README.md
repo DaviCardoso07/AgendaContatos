@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas e modularização de código.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória** e **usabilidade**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **modularização** e **usabilidade**.
 
 ---
 
@@ -24,7 +24,7 @@ Nesta primeira versão, o sistema suportava apenas **1 único contato por vez**,
   - `4` Excluir contato (limpando o valor das variáveis)
   - `5` Sair
 - **Características Técnicas:**
-  - Utilização do `Scanner` e estrutura condicional `switch-case` com sintaxe moderna.
+  - Utilização do `Scanner` e estrutura condicional `switch-case`.
   - Armazenamento em memória através de variáveis estáticas (`nome`, `celular`, `email`).
 
 ---
@@ -60,12 +60,27 @@ Com a necessidade de superar o limite fixo de tamanho dos vetores, a terceira ve
 ### 🔹 v0.3.0 — *Inclusão da Funcionalidade de Edição & Boas Práticas*
 > **Conceito principal:** CRUD completo (Create, Read, Update, Delete) e encerramento correto de recursos.
 
-A versão atual finaliza o ciclo completo do CRUD, incluindo a opção de **alteração/edição** de contatos existentes e melhorando o controle do fluxo.
+Inclusão da opção de **alteração/edição** de contatos existentes e melhoria no controle de fluxo.
 
 - **Novidades:**
   - 🆕 **Opção 4 — Alterar contato:** Permite localizar um contato pelo nome e atualizar seus dados (`.set(posicao, novoValor)`).
   - Ajuste na numeração do menu principal (Opção 6 agora é "Sair").
   - Encerramento do recurso de leitura no terminal via `sc.close()`.
+
+---
+
+### 🔹 v1.0.0 — *Modularização e Organização do Código*
+> **Conceito principal:** Arquitetura limpa, decomposição em métodos estáticos especialistas e organização em pacotes.
+
+A versão **1.0.0** representa o primeiro marco estável do projeto. Todo o fluxo procedural presente no método `main` foi refatorado e isolado em métodos reaproveitáveis e com responsabilidade única.
+
+- **Novidades e Refatorações:**
+  - 📦 **Estruturação em Pacotes:** Organização da classe principal sob o pacote `br.edu.principal`.
+  - 🧩 **Modularização do Código:** Separação do CRUD e das exibições em métodos `public static`:
+    - `mostrarCabecalho()` e `mostrarMenu()` para formatação da interface visual do console.
+    - `selecionarOpcao()` para leitura isolada da escolha do usuário.
+    - `adicionar()`, `listar()`, `pesquisar()`, `atualizar()`, `excluir()` e `sair()` para encapsular a lógica das operações.
+  - ⚡ **Uso de Switch Expressions:** Adoção da sintaxe moderna do `switch-case` com setas (`->`) para um código mais limpo e sem a necessidade de múltiplos comandos `break`.
 
 ---
 
@@ -76,6 +91,10 @@ A versão atual finaliza o ciclo completo do CRUD, incluindo a opção de **alte
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
   - Listas Dinâmicas (`ArrayList<String>`)
+- **Conceitos de Programação:**
+  - Programação Procedural
+  - Modularização (Funções / Métodos Estáticos)
+  - Estruturação de Pacotes (`Packages`)
 - **Entrada de Dados:** `java.util.Scanner`
 
 ---
