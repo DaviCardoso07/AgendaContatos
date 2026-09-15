@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização e correção de bugs de escopo.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes e integração com interface gráfica nativa.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **modularização** e **boas práticas de programação**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização** e **usabilidade**.
 
 ---
 
@@ -76,7 +76,7 @@ A versão **1.0.0** representa o primeiro marco estável do projeto. Todo o flux
 
 - **Novidades e Refatorações:**
   - 📦 **Estruturação em Pacotes:** Organização da classe principal sob o pacote `br.edu.principal`.
-  - 🧩 **Modularização do Código:** Separação do CRUD e das exibições em métodos `public static` (`adicionar`, `listar`, `pesquisar`, `atualizar`, `excluir`, `mostrarCabecalho`, `mostrarMenu`, `selecionarOpcao`).
+  - 🧩 **Modularização do Código:** Separação do CRUD e das exibições em métodos `public static`.
   - ⚡ **Uso de Switch Expressions:** Adoção da sintaxe moderna do `switch-case` com setas (`->`) para um código mais limpo.
 
 ---
@@ -87,24 +87,39 @@ A versão **1.0.0** representa o primeiro marco estável do projeto. Todo o flux
 Versão de correção focada na estabilidade do encerramento da aplicação.
 
 - **Correções Realizadas:**
-  - 🐛 **Fix no encerramento da aplicação:** Na `v1.0.0`, o método `sair(boolean continuar)` recebia a variável primitiva por valor, impedindo a alteração do estado de execução do loop `while` na `main` (o programa não encerrava ao selecionar a opção 6).
-  - 🛠️ **Refatoração da assinatura do método:** O método `sair()` foi alterado para ter o tipo de retorno `boolean` (`public static boolean sair()`), retornando `false` e atualizando diretamente a condição de execução na classe principal (`continuar = sair()`).
+  - 🐛 **Fix no encerramento da aplicação:** Correção da função `sair()`, alterando seu retorno para `boolean` (`public static boolean sair()`) a fim de reatribuir o estado da variável de controle (`continuar = sair()`) e encerrar o loop da `main`.
+
+---
+
+### 🔹 v1.1.1 — *Arquitetura Multi-Classe e Interface Gráfica Básica*
+> **Conceito principal:** Princípio de Responsabilidade Única (SRP) com múltiplas classes e introdução ao Java Swing.
+
+A versão **1.1.1** reorganiza a arquitetura da aplicação dividindo as responsabilidades entre classes distintas, além de adicionar um recurso de interface gráfica[cite: 1, 2, 3].
+
+- **Novidades e Refatorações:**
+  - 🏛️ **Arquitetura Multi-Classe (Separação de Responsabilidades):**
+    - `Principal.java`: Responsável unicamente pela inicialização da aplicação e controle do menu principal[cite: 2].
+    - `Agenda.java`: Classe especialista que contém todas as regras de negócio do CRUD (`adicionar`, `listar`, `pesquisar`, `atualizar`, `excluir`)[cite: 1].
+    - `Uteis.java`: Classe utilitária com métodos de suporte à interface de linha de comando (`mostrarCabecalho`, `mostrarMenu`, `selecionarOpcao`, `sair`, `sobre`)[cite: 3].
+  - 🆕 **Opção 7 — Sobre:** Adição de uma nova opção no menu[cite: 2, 3].
+  - 🖼️ **Introdução ao Java Swing:** Integração com o pacote `javax.swing.JOptionPane` no método `Uteis.sobre()`, exibindo os créditos do autor através de uma janela modal (*pop-up*) nativa do Java[cite: 3].
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Linguagem:** Java (JDK 17+)
+- **Bibliotecas Nativas:** `java.util.Scanner`, `java.util.ArrayList`, `javax.swing.JOptionPane`[cite: 1, 2, 3]
 - **Estruturas de Dados Utilizadas:**
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
-  - Listas Dinâmicas (`ArrayList<String>`)
+  - Listas Dinâmicas (`ArrayList<String>`)[cite: 1, 2]
 - **Conceitos de Programação:**
-  - Programação Procedural
-  - Modularização (Funções / Métodos Estáticos)
-  - Passagem de Parâmetros e Tipos de Retorno
-  - Estruturação de Pacotes (`Packages`)
-- **Entrada de Dados:** `java.util.Scanner`
+  - Programação Procedural e Orientação a Objetos Básica
+  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Uteis`)[cite: 1, 2, 3]
+  - Modularização (Métodos Estáticos)[cite: 1, 3]
+  - Estruturação de Pacotes (`Packages`)[cite: 1, 2, 3]
+  - Interface Gráfica Nativa (`Swing`)[cite: 3]
 
 ---
 
