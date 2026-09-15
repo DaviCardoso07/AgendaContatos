@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas e modularização de código.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização e correção de bugs de escopo.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **modularização** e **usabilidade**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **modularização** e **boas práticas de programação**.
 
 ---
 
@@ -76,11 +76,19 @@ A versão **1.0.0** representa o primeiro marco estável do projeto. Todo o flux
 
 - **Novidades e Refatorações:**
   - 📦 **Estruturação em Pacotes:** Organização da classe principal sob o pacote `br.edu.principal`.
-  - 🧩 **Modularização do Código:** Separação do CRUD e das exibições em métodos `public static`:
-    - `mostrarCabecalho()` e `mostrarMenu()` para formatação da interface visual do console.
-    - `selecionarOpcao()` para leitura isolada da escolha do usuário.
-    - `adicionar()`, `listar()`, `pesquisar()`, `atualizar()`, `excluir()` e `sair()` para encapsular a lógica das operações.
-  - ⚡ **Uso de Switch Expressions:** Adoção da sintaxe moderna do `switch-case` com setas (`->`) para um código mais limpo e sem a necessidade de múltiplos comandos `break`.
+  - 🧩 **Modularização do Código:** Separação do CRUD e das exibições em métodos `public static` (`adicionar`, `listar`, `pesquisar`, `atualizar`, `excluir`, `mostrarCabecalho`, `mostrarMenu`, `selecionarOpcao`).
+  - ⚡ **Uso de Switch Expressions:** Adoção da sintaxe moderna do `switch-case` com setas (`->`) para um código mais limpo.
+
+---
+
+### 🔹 v1.0.1 — *Correção de Bug no Fluxo de Encerramento (Bug Fix)*
+> **Conceito principal:** Correção de repasse de parâmetros primitivos (passagem por valor) no controle do loop principal.
+
+Versão de correção focada na estabilidade do encerramento da aplicação.
+
+- **Correções Realizadas:**
+  - 🐛 **Fix no encerramento da aplicação:** Na `v1.0.0`, o método `sair(boolean continuar)` recebia a variável primitiva por valor, impedindo a alteração do estado de execução do loop `while` na `main` (o programa não encerrava ao selecionar a opção 6).
+  - 🛠️ **Refatoração da assinatura do método:** O método `sair()` foi alterado para ter o tipo de retorno `boolean` (`public static boolean sair()`), retornando `false` e atualizando diretamente a condição de execução na classe principal (`continuar = sair()`).
 
 ---
 
@@ -94,6 +102,7 @@ A versão **1.0.0** representa o primeiro marco estável do projeto. Todo o flux
 - **Conceitos de Programação:**
   - Programação Procedural
   - Modularização (Funções / Métodos Estáticos)
+  - Passagem de Parâmetros e Tipos de Retorno
   - Estruturação de Pacotes (`Packages`)
 - **Entrada de Dados:** `java.util.Scanner`
 

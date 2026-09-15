@@ -43,7 +43,7 @@ public class Principal {
                 	excluir(sc, nomes, celulares, emails);
                 }          	
                 case 6-> {
-                	sair(continuar);
+                	continuar = sair();
                 }
   
                 default ->{
@@ -204,9 +204,9 @@ public class Principal {
         }
     }
     
-    public static void sair(boolean continuar) {
+    public static boolean sair() {
     	System.out.println("Saindo da Agenda de Contatos...");
-        continuar = false;
+        return false;
         
     }
 }
