@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes e integração com interface gráfica nativa.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes, persistência em arquivos de texto e integração com interface gráfica nativa.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização** e **usabilidade**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização**, **persistência de dados em arquivos** e **usabilidade**.
 
 ---
 
@@ -94,32 +94,53 @@ Versão de correção focada na estabilidade do encerramento da aplicação.
 ### 🔹 v1.1.1 — *Arquitetura Multi-Classe e Interface Gráfica Básica*
 > **Conceito principal:** Princípio de Responsabilidade Única (SRP) com múltiplas classes e introdução ao Java Swing.
 
-A versão **1.1.1** reorganiza a arquitetura da aplicação dividindo as responsabilidades entre classes distintas, além de adicionar um recurso de interface gráfica[cite: 1, 2, 3].
+A versão **1.1.1** reorganiza a arquitetura da aplicação dividindo as responsabilidades entre classes distintas, além de adicionar um recurso de interface gráfica.
 
 - **Novidades e Refatorações:**
   - 🏛️ **Arquitetura Multi-Classe (Separação de Responsabilidades):**
-    - `Principal.java`: Responsável unicamente pela inicialização da aplicação e controle do menu principal[cite: 2].
-    - `Agenda.java`: Classe especialista que contém todas as regras de negócio do CRUD (`adicionar`, `listar`, `pesquisar`, `atualizar`, `excluir`)[cite: 1].
-    - `Uteis.java`: Classe utilitária com métodos de suporte à interface de linha de comando (`mostrarCabecalho`, `mostrarMenu`, `selecionarOpcao`, `sair`, `sobre`)[cite: 3].
-  - 🆕 **Opção 7 — Sobre:** Adição de uma nova opção no menu[cite: 2, 3].
-  - 🖼️ **Introdução ao Java Swing:** Integração com o pacote `javax.swing.JOptionPane` no método `Uteis.sobre()`, exibindo os créditos do autor através de uma janela modal (*pop-up*) nativa do Java[cite: 3].
+    - `Principal.java`: Responsável unicamente pela inicialização da aplicação e controle do menu principal.
+    - `Agenda.java`: Classe especialista que contém todas as regras de negócio do CRUD (`adicionar`, `listar`, `pesquisar`, `atualizar`, `excluir`).
+    - `Uteis.java`: Classe utilitária com métodos de suporte à interface de linha de comando (`mostraInicializacao`, `mostraMenu`, `selecionaOpcao`, `sair`, `sobre`).
+  - 🆕 **Opção 7 — Sobre:** Adição de uma nova opção no menu.
+  - 🖼️ **Introdução ao Java Swing:** Integração com o pacote `javax.swing.JOptionPane` no método `Uteis.sobre()`, exibindo os créditos do autor através de uma janela modal (*pop-up*) nativa do Java.
+
+---
+
+### 🔹 v2.1.0 — *Persistência de Dados em Arquivos de Texto (I/O) & Refatoração da Camada de Persistência*
+> **Conceito principal:** Armazenamento permanente em disco (`java.io`), tratamento de exceções, validação de registros e criação da classe especialista `Persistencia`.
+
+A versão **2.1.0** traz a persistência de dados para a aplicação, garantindo que os contatos salvos não sejam perdidos ao encerrar o sistema. Os dados passam a ser gravados e lidos de um arquivo texto local (`contatos.txt`).
+
+- **Novidades e Funcionalidades de Persistência:**
+  - 💾 **Salvar Contatos:** Utilização de `PrintWriter` e `FileWriter` no formato delimitado (`nome;celular;email`) para gravar todos os contatos em disco ao encerrar o programa na opção `6 - Sair`.
+  - 📂 **Carregar Contatos:** Leitura automática de `contatos.txt` via `BufferedReader` e `FileReader` no momento em que a aplicação é iniciada.
+  - 🛡️ **Tratamento de Exceções e Erros de I/O:** Captura segura de exceções (`try-catch` com `IOException`) evitando que a aplicação quebre durante operações de arquivo.
+  - 🔍 **Validação de Registros Corrompidos:** Checagem das linhas usando `.split(";")` para ignorar formatos inválidos ou corrompidos, além do uso de `File.exists()` para evitar erros caso o arquivo ainda não tenha sido criado.
+- **Arquitetura e Refatorações:**
+  - 🏛️ **Nova Classe `Persistencia.java`:** Criação de uma classe especialista em operações de I/O, isolando completamente o gerenciamento do arquivo `contatos.txt` das regras de negócio e da interface.
+  - 🏷️ **Atualização de Interface e Identificação:** Atualização do banner inicial em `Uteis.mostraInicializacao()` exibindo a versão **v2.1.0**.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Linguagem:** Java (JDK 17+)
-- **Bibliotecas Nativas:** `java.util.Scanner`, `java.util.ArrayList`, `javax.swing.JOptionPane`[cite: 1, 2, 3]
+- **Bibliotecas Nativas:** 
+  - `java.util.Scanner`, `java.util.List`, `java.util.ArrayList`
+  - `java.io.BufferedReader`, `java.io.File`, `java.io.FileReader`, `java.io.FileWriter`, `java.io.IOException`, `java.io.PrintWriter`
+  - `javax.swing.JOptionPane`
 - **Estruturas de Dados Utilizadas:**
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
-  - Listas Dinâmicas (`ArrayList<String>`)[cite: 1, 2]
+  - Listas Dinâmicas (`ArrayList<String>`)
 - **Conceitos de Programação:**
-  - Programação Procedural e Orientação a Objetos Básica
-  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Uteis`)[cite: 1, 2, 3]
-  - Modularização (Métodos Estáticos)[cite: 1, 3]
-  - Estruturação de Pacotes (`Packages`)[cite: 1, 2, 3]
-  - Interface Gráfica Nativa (`Swing`)[cite: 3]
+  - Programação Procedural e Orientação a Objetos
+  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`)
+  - Persistência de Dados em Arquivos Texto (`.txt`)
+  - Tratamento de Exceções (`try-catch` / `IOException`)
+  - Modularização (Métodos Estáticos)
+  - Estruturação de Pacotes (`Packages`)
+  - Interface Gráfica Nativa (`Swing`)
 
 ---
 
