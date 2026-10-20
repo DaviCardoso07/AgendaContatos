@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes, persistência em arquivos de texto e integração com interface gráfica nativa.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes, persistência em arquivos de texto, orientação a objetos e integração com interface gráfica nativa.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização**, **persistência de dados em arquivos** e **usabilidade**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização**, **persistência de dados em arquivos**, **orientação a objetos** e **usabilidade**.
 
 ---
 
@@ -122,6 +122,18 @@ A versão **2.1.0** traz a persistência de dados para a aplicação, garantindo
 
 ---
 
+### 🔹 v3.0.0 — *Iniciação à Programação Orientada a Objetos (POO)*
+> **Conceito principal:** Transição do modelo procedural baseado em listas paralelas para a modelagem orientada a objetos com a classe `Contato`.
+
+A versão **3.0.0** representa o início do paradigma de Orientação a Objetos no projeto. Estruturas como a classe `Contato` passam a encapsular os atributos e abstrações do sistema, preparando a aplicação para manipulação de listas de objetos (`List<Contato>`).
+
+- **Novidades e Refatorações:**
+  - 🧱 **Criação da Classe Dominial `Contato.java`:** Definição da classe base do modelo de domínio no pacote `br.edu.principal`.
+  - 🔄 **Evolução do Encapsulamento:** Preparação da arquitetura para a substituição de listas paralelas independentes (`nomes`, `celulares`, `emails`) por uma única coleção tipada do objeto de modelo.
+  - 🏷️ **Atualização da Versão no Sistema:** Atualização da exibição inicial de inicialização (`Uteis.mostraInicializacao()`) e versionamento do ecossistema.
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Linguagem:** Java (JDK 17+)
@@ -132,10 +144,11 @@ A versão **2.1.0** traz a persistência de dados para a aplicação, garantindo
 - **Estruturas de Dados Utilizadas:**
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
-  - Listas Dinâmicas (`ArrayList<String>`)
+  - Listas Dinâmicas (`ArrayList<String>` / `ArrayList<Contato>`)
 - **Conceitos de Programação:**
-  - Programação Procedural e Orientação a Objetos
-  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`)
+  - Programação Procedural e Orientação a Objetos (POO)
+  - Modelagem de Objetos e Encapsulamento
+  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`, `Contato`)
   - Persistência de Dados em Arquivos Texto (`.txt`)
   - Tratamento de Exceções (`try-catch` / `IOException`)
   - Modularização (Métodos Estáticos)
