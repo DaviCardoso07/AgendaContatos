@@ -145,7 +145,26 @@ A versão **3.1.0** consolida a utilização prática da classe `Contato` atrav�
     - Leitura e exibição dos dados dos contatos utilizando o laço *for-each* (`for (Contato contato : contatos)`).
     - Iteração indexada com *for* tradicional utilizando `.size()` e acessando os elementos via `.get(i)`.
   - 🎯 **Acesso Direto aos Atributos:** Demonstração de acesso encadeado e direto às propriedades do objeto (`contatos.get(0).nome`).
-  - 🏷️ **Atualização da Exibição da Versão:** Atualização do banner de inicialização para **v3.1.0** em `Uteis.mostraInicializacao()`.
+
+---
+
+### 🔹 v3.2.0 — *Refatoração Completa do CRUD e Persistência para Objetos (`List<Contato>`)*
+> **Conceito principal:** Substituição definitiva das listas paralelas (`String`) por uma única lista tipada de objetos `List<Contato>` em toda a aplicação.
+
+A versão **3.2.0** conclui a transição para a Programação Orientada a Objetos, unificando a manipulação de dados na classe `Contato` em todas as camadas do sistema (CRUD, Persistência e Execução).
+
+- **Novidades e Refatorações:**
+  - 🎯 **CRUD Totalmente Orientado a Objetos (`Agenda.java`):**
+    - `adicionar()`: Instancia novos objetos `Contato`, popula seus atributos e adiciona à `List<Contato>`.
+    - `listar()` e `pesquisar()`: Iteração limpa com *for-each* navegando pelos objetos da lista.
+    - `atualizar()`: Localiza a referência do objeto `Contato` e altera diretamente seus campos.
+    - `excluir()`: Remoção direta do objeto da lista com `contatos.remove(contatoExcluir)`.
+  - 💾 **Persistência Orientada a Objetos (`Persistencia.java`):**
+    - `salvarContatos()`: Grava diretamente os atributos dos objetos `Contato` em formato delimitado (`nome;celular;email`).
+    - `carregarContatos()`: Instancia e popula objetos `Contato` a partir da leitura do arquivo texto antes de adicioná-los à lista principal.
+  - 🚀 **Simplificação do Fluxo Principal (`Principal.java`):**
+    - Eliminação das listas paralelas de `String`. Todo o fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
+  - 🏷️ **Atualização no Banner:** Atualização da versão para **v3.2.0** em `Uteis.mostraInicializacao()`.
 
 ---
 
@@ -159,13 +178,13 @@ A versão **3.1.0** consolida a utilização prática da classe `Contato` atrav�
 - **Estruturas de Dados Utilizadas:**
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
-  - Listas Dinâmicas de Strings (`ArrayList<String>`) e de Objetos (`ArrayList<Contato>`)
+  - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)
 - **Conceitos de Programação:**
-  - Programação Procedural e Orientação a Objetos (POO)
-  - Instanciação de Objetos, Atributos e Encapsulamento
-  - Iteração sobre Listas de Objetos (For-Each e For Indexado)
+  - Programação Orientada a Objetos (POO)
+  - Abstração, Encapsulamento e Modelagem de Domínio (`Contato`)
+  - Iteração Avançada com For-Each e Busca por Referência de Objeto
   - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`, `Contato`)
-  - Persistência de Dados em Arquivos Texto (`.txt`)
+  - Persistência de Dados de Objetos em Arquivos Texto (`.txt`)
   - Tratamento de Exceções (`try-catch` / `IOException`)
   - Modularização (Métodos Estáticos)
   - Estruturação de Pacotes (`Packages`)
@@ -177,5 +196,6 @@ A versão **3.1.0** consolida a utilização prática da classe `Contato` atrav�
 
 1. Certifique-se de ter o **JDK 17** (ou superior) instalado na sua máquina.
 2. Clone o repositório:
-   ```bash
+   
+```bash
    git clone [https://github.com/seu-usuario/agenda-de-contatos-java.git](https://github.com/seu-usuario/agenda-de-contatos-java.git)
