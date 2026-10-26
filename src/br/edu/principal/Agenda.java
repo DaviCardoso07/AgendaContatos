@@ -4,33 +4,36 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Agenda {
-	public static void adicionar(Scanner sc, 
-    		List<String> nomes, 
-    		List<String> celulares, 
-    		List<String> emails) {
-    	 System.out.println("=== ADICIONAR CONTATO ===");
-         System.out.print("Digite o nome: ");
-         String nome = sc.nextLine();
-         System.out.print("Digite o celular: ");
-         String celular = sc.nextLine();
-         System.out.print("Digite o email: ");
-         String email = sc.nextLine();
+	
+	public static void adicionar(
+			Scanner sc, 
+			List<String> nomes, 
+			List<String> celulares, 
+			List<String> emails) {
+    	System.out.println("=== ADICIONAR CONTATO ===");
+        System.out.print("Digite o nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Digite o celular: ");
+        String celular = sc.nextLine();
+        System.out.print("Digite o email: ");
+        String email = sc.nextLine();
 
-         nomes.add(nome);
-         celulares.add(celular);
-         emails.add(email);
-         
-         System.out.println("Contato adicionado com sucesso!");
+        nomes.add(nome);
+        celulares.add(celular);
+        emails.add(email);
+
+        System.out.println("Contato adicionado com sucesso!");
     }
-    public static void listar(List<String> nomes,
-    		List<String> celulares, 
-    		List<String> emails) {
+	
+	public static void listar(
+            List<String> nomes,
+            List<String> celulares,
+            List<String> emails) {
     	System.out.println("=== LISTAR CONTATOS ===");
         if (nomes.size() == 0) {
             System.out.println("Nenhum contato cadastrado!");
 
-        } 
-        else {
+        } else {
             for (int i = 0; i < nomes.size(); i++) {
 
                 System.out.println("--------------------------");
@@ -40,12 +43,13 @@ public class Agenda {
             }
         }
     }
-    
-    public static void pesquisar(Scanner sc, 
-    		List<String> nomes,
-    		List<String> celulares, 
-    		List<String> emails) {
-    	System.out.println("=== PESQUISAR CONTATO ===");
+
+    public static void pesquisar(
+            Scanner sc,
+            List<String> nomes,
+            List<String> celulares,
+            List<String> emails) {
+    	System.out.println("=== PROCURAR CONTATO ===");
         System.out.print("Digite o nome do contato: ");
         String nomeBusca = sc.nextLine();
 
@@ -61,11 +65,11 @@ public class Agenda {
                 encontrado = true;
             }
         }
-        //basicamente ele inverte o sinal do booleano no if(que só entra quando é true), ou seja se for false ele vira true(entrando no if e consequentemente mostrando que o contato não foi encontrado) e se for true vira false(não entrand no if e consequentemente não printando nada), dava pra fazer com 0 e 1 tambem
         if (!encontrado) {
             System.out.println("Contato não encontrado!");
         }
     }
+
     public static void atualizar(
             Scanner sc,
             List<String> nomes,
@@ -129,4 +133,5 @@ public class Agenda {
             System.out.println("Contato não encontrado!");
         }
     }
+    
 }
