@@ -130,7 +130,22 @@ A versão **3.0.0** representa o início do paradigma de Orientação a Objetos 
 - **Novidades e Refatorações:**
   - 🧱 **Criação da Classe Dominial `Contato.java`:** Definição da classe base do modelo de domínio no pacote `br.edu.principal`.
   - 🔄 **Evolução do Encapsulamento:** Preparação da arquitetura para a substituição de listas paralelas independentes (`nomes`, `celulares`, `emails`) por uma única coleção tipada do objeto de modelo.
-  - 🏷️ **Atualização da Versão no Sistema:** Atualização da exibição inicial de inicialização (`Uteis.mostraInicializacao()`) e versionamento do ecossistema.
+
+---
+
+### 🔹 v3.1.0 — *Instanciação e Manipulação Prática de Objetos `Contato`*
+> **Conceito principal:** Prática direta de instanciação de objetos, atribuição de atributos e iteração sobre coleções de objetos `ArrayList<Contato>`.
+
+A versão **3.1.0** consolida a utilização prática da classe `Contato` através de testes e manipulação direta de instâncias e coleções de objetos dentro do fluxo principal da aplicação.
+
+- **Novidades e Implementações:**
+  - 🧪 **Instanciação de Objetos:** Criação e preenchimento de múltiplos objetos da classe `Contato` (`contato1`, `contato2`, `contato3`) definindo diretamente seus atributos (`nome`, `celular`, `email`).
+  - 📦 **Coleção de Objetos Dinâmica:** Criação de uma lista tipada `List<Contato> contatos = new ArrayList<>()` para armazenar e agrupar os objetos criados.
+  - 🔄 **Iteração com For-Each e For Tradicional:**
+    - Leitura e exibição dos dados dos contatos utilizando o laço *for-each* (`for (Contato contato : contatos)`).
+    - Iteração indexada com *for* tradicional utilizando `.size()` e acessando os elementos via `.get(i)`.
+  - 🎯 **Acesso Direto aos Atributos:** Demonstração de acesso encadeado e direto às propriedades do objeto (`contatos.get(0).nome`).
+  - 🏷️ **Atualização da Exibição da Versão:** Atualização do banner de inicialização para **v3.1.0** em `Uteis.mostraInicializacao()`.
 
 ---
 
@@ -144,10 +159,11 @@ A versão **3.0.0** representa o início do paradigma de Orientação a Objetos 
 - **Estruturas de Dados Utilizadas:**
   - Variáveis Primitivas e `String`
   - Vetores Fixos (`Array[]`)
-  - Listas Dinâmicas (`ArrayList<String>` / `ArrayList<Contato>`)
+  - Listas Dinâmicas de Strings (`ArrayList<String>`) e de Objetos (`ArrayList<Contato>`)
 - **Conceitos de Programação:**
   - Programação Procedural e Orientação a Objetos (POO)
-  - Modelagem de Objetos e Encapsulamento
+  - Instanciação de Objetos, Atributos e Encapsulamento
+  - Iteração sobre Listas de Objetos (For-Each e For Indexado)
   - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`, `Contato`)
   - Persistência de Dados em Arquivos Texto (`.txt`)
   - Tratamento de Exceções (`try-catch` / `IOException`)
