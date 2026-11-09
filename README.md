@@ -164,7 +164,20 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
     - `carregarContatos()`: Instancia e popula objetos `Contato` a partir da leitura do arquivo texto antes de adicioná-los à lista principal.
   - 🚀 **Simplificação do Fluxo Principal (`Principal.java`):**
     - Eliminação das listas paralelas de `String`. Todo o fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
-  - 🏷️ **Atualização no Banner:** Atualização da versão para **v3.2.0** em `Uteis.mostraInicializacao()`.
+
+---
+
+### 🔹 v3.3.0 — *Consolidação do Encapsulamento de Atributos e Refatoração de Métodos Auxiliares*
+> **Conceito principal:** Aplicação estrita do princípio de encapsulamento (Getters e Setters) na classe de domínio e otimização de procedimentos utilitários de saída.
+
+A versão **3.3.0** traz melhorias refinadas de segurança de dados e padronização estrutural:
+
+- **Novidades e Refatorações:**
+  - 🔒 **Encapsulamento Rígido (`Contato.java`):** Atributos da classe `Contato` tornados estritamente privados (`private`), exigindo o uso obrigatório de métodos acessores (`get...`) e modificadores (`set...`) em toda a aplicação (`Agenda` e `Persistencia`).
+  - 🛠️ **Refatoração de Procedimentos Utilitários (`Uteis.java` e `Principal.java`):**
+    - O método de encerramento `Uteis.sair()` foi convertido de booleano para um procedimento padrão de exibição de mensagem (`void`), otimizando o fluxo.
+    - O controle de saída na classe `Principal.java` foi simplificado utilizando diretamente a instrução estrutural `return;` no `case 6`.
+  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v3.3.0**.
 
 ---
 
@@ -176,12 +189,11 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
   - `java.io.BufferedReader`, `java.io.File`, `java.io.FileReader`, `java.io.FileWriter`, `java.io.IOException`, `java.io.PrintWriter`
   - `javax.swing.JOptionPane`
 - **Estruturas de Dados Utilizadas:**
-  - Variáveis Primitivas e `String`
-  - Vetores Fixos (`Array[]`)
   - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)
 - **Conceitos de Programação:**
   - Programação Orientada a Objetos (POO)
-  - Abstração, Encapsulamento e Modelagem de Domínio (`Contato`)
+  - Abstração, Encapsulamento Avançado e Modelagem de Domínio (`Contato`)
+  - Uso de Getters e Setters para manipulação segura de estado
   - Iteração Avançada com For-Each e Busca por Referência de Objeto
   - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`, `Contato`)
   - Persistência de Dados de Objetos em Arquivos Texto (`.txt`)
@@ -196,6 +208,5 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
 
 1. Certifique-se de ter o **JDK 17** (ou superior) instalado na sua máquina.
 2. Clone o repositório:
-   
-```bash
+   ```bash
    git clone [https://github.com/seu-usuario/agenda-de-contatos-java.git](https://github.com/seu-usuario/agenda-de-contatos-java.git)
