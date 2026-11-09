@@ -22,3 +22,5 @@ $RECYCLE.BIN/
 # Logs e arquivos de depuração
 *.log
 .recommenders/
+/.metadata/
+/src/nbproject/private/
