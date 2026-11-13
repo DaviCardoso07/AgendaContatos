@@ -1,12 +1,12 @@
 # 📇 Agenda de Contatos em Java
 
-> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, modularização em múltiplas classes, persistência em arquivos de texto, orientação a objetos e integração com interface gráfica nativa.
+> Uma aplicação de console em Java para gerenciamento de contatos, desenvolvida passo a passo para demonstrar a evolução do uso de variáveis simples a estruturas de dados dinâmicas, arquitetura em camadas, padrão MVC (Model-View-Controller), persistência em arquivos de texto, orientação a objetos e integração com interface gráfica nativa.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **modularização**, **persistência de dados em arquivos**, **orientação a objetos** e **usabilidade**.
+Este projeto tem como objetivo demonstrar a evolução de um sistema CRUD (*Create, Read, Update, Delete*) básico feito em terminal no ecossistema Java. Acompanhando o histórico de versões, é possível observar melhorias graduais em **arquitetura de dados**, **otimização de memória**, **decomposição em classes**, **padrão MVC**, **persistência de dados**, **orientação a objetos** e **usabilidade**.
 
 ---
 
@@ -163,7 +163,7 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
     - `salvarContatos()`: Grava diretamente os atributos dos objetos `Contato` em formato delimitado (`nome;celular;email`).
     - `carregarContatos()`: Instancia e popula objetos `Contato` a partir da leitura do arquivo texto antes de adicioná-los à lista principal.
   - 🚀 **Simplificação do Fluxo Principal (`Principal.java`):**
-    - Eliminação das listas paralelas de `String`. Todo o fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
+    - Eliminação das listas paralelas de `String`. Todo el fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
 
 ---
 
@@ -185,19 +185,30 @@ A versão **4.1.0** eleva o padrão de arquitetura de software da aplicação, e
   - 📦 **Organização Avançada em Pacotes:**
     - `br.edu.modelo`: Contém a classe de domínio `Contato`.
     - `br.edu.servico`: Contém a classe de regras de negócio `Agenda`.
-    - `br.edu.dao`: Contém a nova classe especialista em persistência `ContatoDAO`.
+    - `br.edu.dao`: Contém a classe especialista em persistência `ContatoDAO`.
     - `br.edu.uteis`: Contém a classe de suporte e interface `Uteis`.
     - `br.edu.principal`: Contém a classe executável `Principal`.
   - 🏛️ **Padrão DAO (`ContatoDAO.java`):**
-    - Substituição da antiga classe de persistência procedural por uma classe orientada a objetos (`ContatoDAO`) parametrizada com o caminho do arquivo (`caminhoArquivo`).
-    - Uso estruturado do recurso de fechamento automático de recursos do Java (`try-with-resources`) para `PrintWriter` e `BufferedReader`, evitando vazamentos de memória e fluxo de I/O.
-    - Validação avançada de colunas no carregamento utilizando `.split(";", -1)` para preservar colunas vazias, checagem de tamanho exato de 3 colunas e validação com `.trim().isEmpty()` para ignorar registros corrompidos ou espaços em branco indesejados.
-    - Retorno booleano em `salvarContatos()` para notificar a classe principal caso ocorra falha de gravação em disco.
+    - Classe orientada a objetos para persistência parametrizada com o caminho do arquivo.
+    - Uso de *try-with-resources* para fechamento automático de arquivos e validação rigorosa de colunas divididas (`.split(";", -1)`).
   - 🔄 **Sobrescrita do Método `toString()` em `Contato.java`:**
-    - Implementação da anotação `@Override` e sobrescrita do método `toString()` na classe de domínio `Contato`, encapsulando a formatação de exibição textual dos dados do contato de maneira limpa e reaproveitável.
-  - 🧹 **Simplificação da Exibição (`Agenda.java`):**
-    - Refatoração dos métodos `listar()` e `pesquisar()` na classe `Agenda` para imprimir diretamente o objeto `contato`, tirando proveito da sobrescrita do `toString()`.
-  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v4.1.0**.
+    - Implementação da anotação `@Override` para padronizar a exibição textual dos dados do contato de maneira polimórfica.
+
+---
+
+### 🔹 v5.0.0 — *Arquitetura MVC (Model-View-Controller) e Separação de Camadas*
+> **Conceito principal:** Implementação rigorosa do padrão de arquitetura **MVC (Model-View-Controller)**, desacoplando completamente a interação com o usuário (Camada de Visão) da lógica de negócios e controle de fluxo.
+
+A versão **5.0.0** representa a maturação arquitetural completa da aplicação, dividindo as responsabilidades em pacotes especializados (`br.edu.modelo`, `br.edu.visao`, `br.edu.controle`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`).
+
+- **Novidades e Refatorações da Versão 5.0.0:**
+  - 🏛️ **Introdução da Camada de Visão (`AgendaView.java`):**
+    - Criação do pacote `br.edu.visao` contendo a classe `AgendaView`, responsável por isolar toda a interação de I/O no terminal (impressão de menus, captação de opções, leitura de dados para cadastro/atualização, confirmações e exibição de resultados)[cite: 18].
+  - 🎮 **Introdução da Camada de Controle (`AgendaController.java`):**
+    - Criação do pacote `br.edu.controle` contendo a classe `AgendaController`, responsável por gerenciar o estado da lista de contatos, processar as regras de negócio e intermediar as operações entre a interface (`AgendaView`) e a persistência (`ContatoDAO`)[cite: 12].
+  - 🚀 **Desacoplamento do Fluxo Principal (`Principal.java`):**
+    - O método `main` foi totalmente simplificado e transformado em um orquestrador limpo, instanciando os componentes do ecossistema (`ContatoDAO`, `List<Contato>`, `AgendaController`, `AgendaView`) e delegando o fluxo de execução para o laço principal baseado nas ações da Visão e do Controle.
+  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v5.0.0**[cite: 17].
 
 ---
 
@@ -209,16 +220,16 @@ A versão **4.1.0** eleva o padrão de arquitetura de software da aplicação, e
   - `java.io.BufferedReader`, `java.io.File`, `java.io.FileReader`, `java.io.FileWriter`, `java.io.IOException`, `java.io.PrintWriter`
   - `javax.swing.JOptionPane`
 - **Estruturas de Dados Utilizadas:**
-  - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)
+  - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)[cite: 12, 15]
 - **Conceitos de Programação:**
   - Programação Orientada a Objetos (POO)
-  - Padrão de Arquitetura DAO (*Data Access Object*) para persistência isolada
-  - Sobrescrita de Métodos Polimórficos (`toString`)
-  - Encapsulamento Avançado e Modelagem de Domínio (`Contato`)
-  - Uso de Try-with-resources para gestão segura de I/O de arquivos
-  - Validação rigorosa de dados de entrada/leitura de arquivos `.txt`
-  - Organização Modular em Pacotes Específicos (`br.edu.modelo`, `br.edu.servico`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`)
-  - Interface Gráfica Nativa (`Swing`)
+  - Padrão de Arquitetura **MVC (Model-View-Controller)**[cite: 12, 15, 18]
+  - Padrão DAO (*Data Access Object*) para persistência isolada[cite: 13]
+  - Sobrescrita de Métodos Polimórficos (`toString`)[cite: 14]
+  - Encapsulamento Avançado e Modelagem de Domínio (`Contato`)[cite: 14]
+  - Uso de *Try-with-resources* para gestão segura de I/O de arquivos[cite: 13]
+  - Organização Modular em Pacotes Específicos (`br.edu.modelo`, `br.edu.visao`, `br.edu.controle`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`)[cite: 12, 13, 14, 15, 16, 17, 18]
+  - Interface Gráfica Nativa (`Swing`)[cite: 17]
 
 ---
 
