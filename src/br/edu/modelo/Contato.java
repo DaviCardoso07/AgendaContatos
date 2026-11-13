@@ -1,4 +1,4 @@
-package br.edu.principal;
+package br.edu.modelo;
 
 public class Contato {
 	
@@ -38,5 +38,10 @@ public class Contato {
 
 	public void setEmail(String email) {
 		this.email = email;
-	} 
+	}
+	@Override
+	public String toString() {
+		System.out.println("---------------------------------");
+		return "Nome: " + nome + "\nCelular: " + celular + "\nEmail: " + email;
+	}
 }

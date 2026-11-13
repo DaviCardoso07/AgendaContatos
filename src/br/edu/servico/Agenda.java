@@ -1,7 +1,9 @@
-package br.edu.principal;
+package br.edu.servico;
 
 import java.util.List;
 import java.util.Scanner;
+
+import br.edu.modelo.Contato;
 
 public class Agenda {
 	
@@ -22,7 +24,6 @@ public class Agenda {
 
         contatos.add(contato);
 
-
         System.out.println("Contato adicionado com sucesso!");
     }
 	
@@ -36,11 +37,8 @@ public class Agenda {
         } else {
             
         	for (Contato contato : contatos) {
-
-                System.out.println("--------------------------");
-                System.out.println("Nome: " + contato.getNome());
-                System.out.println("Celular: " + contato.getCelular());
-                System.out.println("Email: " + contato.getEmail());
+        		System.out.println("--------------------------");
+                System.out.println(contato);
             }
         }
     }
@@ -59,9 +57,7 @@ public class Agenda {
             if (contato.getNome().equalsIgnoreCase(nomeBusca)) {
 
             	System.out.println("--------------------------");
-                System.out.println("Nome: " + contato.getNome());
-                System.out.println("Celular: " + contato.getCelular());
-                System.out.println("Email: " + contato.getEmail());
+                System.out.println(contato);
 
                 encontrado = true;
             }
