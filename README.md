@@ -170,14 +170,34 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
 ### 🔹 v3.3.0 — *Consolidação do Encapsulamento de Atributos e Refatoração de Métodos Auxiliares*
 > **Conceito principal:** Aplicação estrita do princípio de encapsulamento (Getters e Setters) na classe de domínio e otimização de procedimentos utilitários de saída.
 
-A versão **3.3.0** traz melhorias refinadas de segurança de dados e padronização estrutural:
+A versão **3.3.0** trouxe melhorias refinadas de segurança de dados e padronização estrutural:
+- 🔒 **Encapsulamento Rígido (`Contato.java`):** Atributos da classe `Contato` tornados estritamente privados (`private`), exigindo o uso de métodos acessores (`get...`) e modificadores (`set...`).
+- 🛠️ **Refatoração de Procedimentos Utilitários:** O método `Uteis.sair()` foi convertido para `void` e o fluxo da `main` simplificado com o uso de `return;` no `case 6`.
 
-- **Novidades e Refatorações:**
-  - 🔒 **Encapsulamento Rígido (`Contato.java`):** Atributos da classe `Contato` tornados estritamente privados (`private`), exigindo o uso obrigatório de métodos acessores (`get...`) e modificadores (`set...`) em toda a aplicação (`Agenda` e `Persistencia`).
-  - 🛠️ **Refatoração de Procedimentos Utilitários (`Uteis.java` e `Principal.java`):**
-    - O método de encerramento `Uteis.sair()` foi convertido de booleano para um procedimento padrão de exibição de mensagem (`void`), otimizando o fluxo.
-    - O controle de saída na classe `Principal.java` foi simplificado utilizando diretamente a instrução estrutural `return;` no `case 6`.
-  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v3.3.0**.
+---
+
+### 🔹 v4.1.0 — *Arquitetura em Camadas (DAO), Sobrescrita de `toString()` e Robustez no Tratamento de Arquivos*
+> **Conceito principal:** Organização profissional de pacotes (`br.edu.modelo`, `br.edu.servico`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`), implementação do padrão DAO (*Data Access Object*) e polimorfismo com a sobrescrita do método `toString()`.
+
+A versão **4.1.0** eleva o padrão de arquitetura de software da aplicação, estruturando o projeto em pacotes focados por responsabilidade e separando nitidamente as regras de acesso a dados da lógica de negócio e da interface.
+
+- **Novidades e Refatorações da Versão 4.1.0:**
+  - 📦 **Organização Avançada em Pacotes:**
+    - `br.edu.modelo`: Contém a classe de domínio `Contato`.
+    - `br.edu.servico`: Contém a classe de regras de negócio `Agenda`.
+    - `br.edu.dao`: Contém a nova classe especialista em persistência `ContatoDAO`.
+    - `br.edu.uteis`: Contém a classe de suporte e interface `Uteis`.
+    - `br.edu.principal`: Contém a classe executável `Principal`.
+  - 🏛️ **Padrão DAO (`ContatoDAO.java`):**
+    - Substituição da antiga classe de persistência procedural por uma classe orientada a objetos (`ContatoDAO`) parametrizada com o caminho do arquivo (`caminhoArquivo`).
+    - Uso estruturado do recurso de fechamento automático de recursos do Java (`try-with-resources`) para `PrintWriter` e `BufferedReader`, evitando vazamentos de memória e fluxo de I/O.
+    - Validação avançada de colunas no carregamento utilizando `.split(";", -1)` para preservar colunas vazias, checagem de tamanho exato de 3 colunas e validação com `.trim().isEmpty()` para ignorar registros corrompidos ou espaços em branco indesejados.
+    - Retorno booleano em `salvarContatos()` para notificar a classe principal caso ocorra falha de gravação em disco.
+  - 🔄 **Sobrescrita do Método `toString()` em `Contato.java`:**
+    - Implementação da anotação `@Override` e sobrescrita do método `toString()` na classe de domínio `Contato`, encapsulando a formatação de exibição textual dos dados do contato de maneira limpa e reaproveitável.
+  - 🧹 **Simplificação da Exibição (`Agenda.java`):**
+    - Refatoração dos métodos `listar()` e `pesquisar()` na classe `Agenda` para imprimir diretamente o objeto `contato`, tirando proveito da sobrescrita do `toString()`.
+  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v4.1.0**.
 
 ---
 
@@ -192,14 +212,12 @@ A versão **3.3.0** traz melhorias refinadas de segurança de dados e padroniza�
   - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)
 - **Conceitos de Programação:**
   - Programação Orientada a Objetos (POO)
-  - Abstração, Encapsulamento Avançado e Modelagem de Domínio (`Contato`)
-  - Uso de Getters e Setters para manipulação segura de estado
-  - Iteração Avançada com For-Each e Busca por Referência de Objeto
-  - Separação de Responsabilidades em Múltiplas Classes (`Principal`, `Agenda`, `Persistencia`, `Uteis`, `Contato`)
-  - Persistência de Dados de Objetos em Arquivos Texto (`.txt`)
-  - Tratamento de Exceções (`try-catch` / `IOException`)
-  - Modularização (Métodos Estáticos)
-  - Estruturação de Pacotes (`Packages`)
+  - Padrão de Arquitetura DAO (*Data Access Object*) para persistência isolada
+  - Sobrescrita de Métodos Polimórficos (`toString`)
+  - Encapsulamento Avançado e Modelagem de Domínio (`Contato`)
+  - Uso de Try-with-resources para gestão segura de I/O de arquivos
+  - Validação rigorosa de dados de entrada/leitura de arquivos `.txt`
+  - Organização Modular em Pacotes Específicos (`br.edu.modelo`, `br.edu.servico`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`)
   - Interface Gráfica Nativa (`Swing`)
 
 ---
