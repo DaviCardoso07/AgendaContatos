@@ -163,7 +163,7 @@ A versão **3.2.0** conclui a transição para a Programação Orientada a Objet
     - `salvarContatos()`: Grava diretamente os atributos dos objetos `Contato` em formato delimitado (`nome;celular;email`).
     - `carregarContatos()`: Instancia e popula objetos `Contato` a partir da leitura do arquivo texto antes de adicioná-los à lista principal.
   - 🚀 **Simplificação do Fluxo Principal (`Principal.java`):**
-    - Eliminação das listas paralelas de `String`. Todo el fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
+    - Eliminação das listas paralelas de `String`. Todo o fluxo utiliza exclusivamente `List<Contato> contatos = new ArrayList<>()`.
 
 ---
 
@@ -203,12 +203,23 @@ A versão **5.0.0** representa a maturação arquitetural completa da aplicaçã
 
 - **Novidades e Refatorações da Versão 5.0.0:**
   - 🏛️ **Introdução da Camada de Visão (`AgendaView.java`):**
-    - Criação do pacote `br.edu.visao` contendo a classe `AgendaView`, responsável por isolar toda a interação de I/O no terminal (impressão de menus, captação de opções, leitura de dados para cadastro/atualização, confirmações e exibição de resultados)[cite: 18].
+    - Criação do pacote `br.edu.visao` contendo a classe `AgendaView`, responsável por isolar toda a interação de I/O no terminal.
   - 🎮 **Introdução da Camada de Controle (`AgendaController.java`):**
-    - Criação do pacote `br.edu.controle` contendo a classe `AgendaController`, responsável por gerenciar o estado da lista de contatos, processar as regras de negócio e intermediar as operações entre a interface (`AgendaView`) e a persistência (`ContatoDAO`)[cite: 12].
+    - Criação do pacote `br.edu.controle` contendo a classe `AgendaController`, responsável por gerenciar o estado da lista de contatos e processar as regras de negócio.
   - 🚀 **Desacoplamento do Fluxo Principal (`Principal.java`):**
-    - O método `main` foi totalmente simplificado e transformado em um orquestrador limpo, instanciando os componentes do ecossistema (`ContatoDAO`, `List<Contato>`, `AgendaController`, `AgendaView`) e delegando o fluxo de execução para o laço principal baseado nas ações da Visão e do Controle.
-  - 🏷️ **Atualização no Banner:** Atualização oficial da versão exibida no terminal para **v5.0.0**[cite: 17].
+    - O método `main` foi totalmente simplificado como um orquestrador limpo dos componentes MVC e DAO.
+
+---
+
+### 🔹 v5.1.0 — *Refatoração da Camada de Visão (Loop de Controle no View) e Padronização de Versão*
+> **Conceito principal:** Delegação completa do ciclo de execução principal (`iniciar()`) para a camada de Visão (`AgendaView`), centralizando o loop de menus, tratamento de opções e métodos auxiliares de execução em um fluxo coeso.
+
+A versão **5.1.0** traz melhorias refinadas na organização do fluxo de interface e na experiência de apresentação de informações do sistema:
+
+- **Novidades e Refatorações da Versão 5.1.0:**
+  - 🖥️ **Centralização do Ciclo de Execução no `AgendaView`:** Introdução do método `iniciar()`, que assume o controle do laço de repetição (`do-while`) do menu principal e despacha as chamadas para métodos especialistas de execução (`executarInclusao`, `executarListagem`, `executarPesquisa`, `executarAtualizacao`, `executarExclusao`, `executarSaida`)[cite: 23].
+  - 🚀 **Simplificação Extrema no `Principal.java`:** O método `main` passa a atuar exclusivamente como instanciador de dependências, delegando imediatamente o controle do fluxo para `view.iniciar()`.
+  - ℹ️ **Atualização da Tela Sobre e Inicialização:** O banner inicial (`mostrarInicializacao()`) e a opção de informações do sistema (`mostrarSobre()`) foram atualizados para exibir de forma padronizada a versão **V5.1.0**, detalhando a arquitetura MVC e persistência DAO utilizada[cite: 23].
 
 ---
 
@@ -220,16 +231,16 @@ A versão **5.0.0** representa a maturação arquitetural completa da aplicaçã
   - `java.io.BufferedReader`, `java.io.File`, `java.io.FileReader`, `java.io.FileWriter`, `java.io.IOException`, `java.io.PrintWriter`
   - `javax.swing.JOptionPane`
 - **Estruturas de Dados Utilizadas:**
-  - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)[cite: 12, 15]
+  - Listas Dinâmicas de Objetos (`List<Contato>` / `ArrayList<Contato>`)[cite: 19, 22]
 - **Conceitos de Programação:**
   - Programação Orientada a Objetos (POO)
-  - Padrão de Arquitetura **MVC (Model-View-Controller)**[cite: 12, 15, 18]
-  - Padrão DAO (*Data Access Object*) para persistência isolada[cite: 13]
-  - Sobrescrita de Métodos Polimórficos (`toString`)[cite: 14]
-  - Encapsulamento Avançado e Modelagem de Domínio (`Contato`)[cite: 14]
-  - Uso de *Try-with-resources* para gestão segura de I/O de arquivos[cite: 13]
-  - Organização Modular em Pacotes Específicos (`br.edu.modelo`, `br.edu.visao`, `br.edu.controle`, `br.edu.dao`, `br.edu.uteis`, `br.edu.principal`)[cite: 12, 13, 14, 15, 16, 17, 18]
-  - Interface Gráfica Nativa (`Swing`)[cite: 17]
+  - Padrão de Arquitetura **MVC (Model-View-Controller)** com ciclo de execução encapsulado na Visão[cite: 22, 23]
+  - Padrão DAO (*Data Access Object*) para persistência isolada[cite: 20]
+  - Sobrescrita de Métodos Polimórficos (`toString`)[cite: 21]
+  - Encapsulamento Avançado e Modelagem de Domínio (`Contato`)[cite: 21]
+  - Uso de *Try-with-resources* para gestão segura de I/O de arquivos[cite: 20]
+  - Organização Modular em Pacotes Específicos (`br.edu.modelo`, `br.edu.visao`, `br.edu.controle`, `br.edu.dao`, `br.edu.principal`)[cite: 19, 20, 21, 22, 23]
+  - Interface Gráfica Nativa (`Swing`)
 
 ---
 
